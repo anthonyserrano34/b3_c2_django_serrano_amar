@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Liste des réservations de {{ request.user.username }}</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>École</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for reservation in reservations %}
+        <tr>
+          <td>{{ reservation.ecole.nom }}</td>
+          <td>{{ reservation.date }}</td>
+          <td>
+          <form method="POST" action="{% url 'annulation_reservation' reservation.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Annuler cette réservation</button>
+          </form></td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="3">Vous n'avez aucune réservation.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

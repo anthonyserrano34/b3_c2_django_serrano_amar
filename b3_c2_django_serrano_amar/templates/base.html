@@ -1,0 +1,40 @@
+
+{% block extrahead %}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        $(function() {
+            $(".datepicker").datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+        });
+    </script>
+{% endblock %}
+
+
+<html>
+<head>
+    <title>AirSchool - TP Django Anthony SERRANO Sofiane AMAR B3 C2</title>
+</head>
+<body>
+    <div class="header">
+        <h1>AirSchool</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Accueil</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'liste_reservations' %}">Mes réservations</a></li>
+                {% else %}
+                <li><a href="{% url 'login' %}">Connexion</a></li>
+                <li><a href="{% url 'inscription' %}">Inscription</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
+

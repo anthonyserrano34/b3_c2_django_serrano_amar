@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Liste des écoles</h1>
+  <ul>
+    {% for ecole in ecoles %}
+      <li>
+        {{ ecole.nom }} - {{ ecole.adresse }}
+        |
+        <a href="{% url 'ecole' ecole.id %}" class="btn btn-primary">Liste des réservations</a>
+        -
+        <a href="{% url 'reservation' ecole.id %}" class="btn btn-primary">Réserver</a>
+      </li>
+    {% empty %}
+      <li>Aucune école enregistrée.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

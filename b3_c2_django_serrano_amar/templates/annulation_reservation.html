@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Annulation de réservation</h1>
+  <p>Veuillez confirmer l'annulation de la réservation :</p>
+  <ul>
+    <li><strong>École :</strong> {{ reservation.ecole }}</li>
+    <li><strong>Date :</strong> {{ reservation.date }}</li>
+    <li><strong>Heure :</strong> {{ reservation.heure }}</li>
+  </ul>
+  <form method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="reservation_id" value="{{ reservation.id }}">
+    <input type="submit" value="Confirmer l'annulation">
+  </form>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Réservations pour {{ ecole.nom }}</h1>
+
+  {% if ecole.reservation_set.all %}
+    <ul>
+    {% for reservation in ecole.reservation_set.all %}
+      <li>{{ reservation.date }} - {{ reservation.client.username }}</li>
+    {% endfor %}
+    </ul>
+  {% else %}
+    <p>Aucune réservation pour le moment.</p>
+  {% endif %}
+{% endblock %}
